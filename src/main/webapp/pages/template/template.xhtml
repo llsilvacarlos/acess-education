@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>#{msg.label_title_application}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/primefaces-locale.js"></script>
+
+	<link type="text/css" rel="stylesheet"
+		href="#{request.contextPath}/css/portal.css" />
+
+</h:head>
+<h:body>
+
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="100"
+			header="#{msg.label_title_acess}" resizable="true" closable="false"
+			collapsible="true">
+
+		<div style='width:100%; text-align:right'><h:form><p:commandLink value="#{msg.label_exit}" action="#{authenticationController.endSession}" ajax="false"/></h:form></div>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="100" header="Bottom"
+			resizable="true" closable="false" collapsible="true">
+			<h:outputText value="South unit content." />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="200" header="#{msg.label_content}"
+			resizable="true" closable="false" collapsible="true">
+
+			<h:form>
+
+				<p:panelMenu style="width:200px">
+					<p:submenu label="#{msg.label_usuario}" >
+						<p:menuitem value="#{msg.label_menu_new_user}"
+							action="#{userController.newUser}" rendered="${userAuthentication != null and userAuthentication.typeUser.id == 1}"/>
+						<p:menuitem value="#{msg.label_menu_search_usuario}"
+							action="#{userController.listAllUser}" rendered="${userAuthentication != null and userAuthentication.typeUser.id == 1}"/>
+							
+							<p:menuitem value="#{msg.label_menu_my_user}"
+							action="#{userController.myUser}" rendered="${userAuthentication != null and userAuthentication.typeUser.id == 3}" />
+							
+					</p:submenu>
+
+					<p:submenu label="#{msg.label_discipline}" rendered="${userAuthentication != null and userAuthentication.typeUser.id == 1}">
+						<p:menuitem value="#{msg.label_menu_new_discipline}"
+							action="#{disciplineController.newDiscipline}" />
+						<p:menuitem value="#{msg.label_menu_search_discipline}"
+							action="#{disciplineController.listAllDiscipline}" />
+					</p:submenu>
+
+					<p:submenu label="#{msg.label_sample_exam}">
+						<p:menuitem value="#{msg.label_menu_new_sample_exam}"
+							action="#{sampleExamController.newSample}" rendered="${userAuthentication != null and userAuthentication.typeUser.id == 1}" />
+
+						<p:menuitem value="#{msg.label_menu_schedule}"
+							action="#{scheduleSampleExamController.list}"  rendered="${userAuthentication != null and userAuthentication.typeUser.id == 1}" />
+
+						<p:menuitem value="#{msg.label_menu_schedule_inscription}"
+							action="#{scheduleSampleExamInscriptionController.list}" />
+
+						<p:menuitem value="#{msg.label_menu_my_schedule}" action="#{studentExamController.listAll}" />
+						
+						<p:menuitem value="#{msg.label_menu_report_schedule}" action="#{studentReportController.listAll}" />
+						
+						
+						<p:menuitem value="#{msg.label_menu_tutoring}" action="#{tutoringController.listAll}" />
+						
+					</p:submenu>
+
+					<p:separator />
+				</p:panelMenu>
+
+			</h:form>
+
+
+		</p:layoutUnit>
+
+		<p:layoutUnit position="east" size="200" header="#{msg.label_warning}"
+			resizable="true" closable="false" collapsible="true" effect="drop">
+			<h:outputText value="Right unit content." />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+
+			<ui:insert name="content">
+
+			</ui:insert>
+		</p:layoutUnit>
+
+	</p:layout>
+
+
+
+
+
+</h:body>
+</html>

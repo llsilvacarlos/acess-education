@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template/template.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:panel>
+
+				<f:facet name="header">
+					<h:outputText
+						value="#{studentExamController.sampleExam.description}" />
+				</f:facet>
+
+				<p:dataTable value="#{studentExamController.listResultStudentVO}"
+					var="resultStudentVO" id="listResponse" style="width: 30%;">
+
+					<p:column width="90">
+						<h:outputText value="#{resultStudentVO.question.description}" />
+
+						<p:dataTable value="#{resultStudentVO.question.questionResponses}"
+							var="questionExamResponse" style="width: 150px;">
+
+							<f:facet name="header">
+								<h:outputText value="#{msg.label_template}" />
+							</f:facet>
+
+							<p:column
+								styleClass="#{questionExamResponse.isCorrect ? 'columnCorrect' : 'columnIncorrect' }">
+								<h:outputText
+									value="#{questionExamResponse.descriptionResponse}" />
+							</p:column>
+							<f:facet name="footer">
+								<h:outputText value="#{msg.label_value} - 1" />
+							</f:facet>
+						</p:dataTable>
+
+					</p:column>
+
+
+					<p:column width="90">
+
+
+						<h:outputText value="#{resultStudentVO.question.description}" />
+
+
+						<p:dataTable value="#{resultStudentVO.responsesStudents}"
+							var="questionStudentResponse" style="width: 150px;">
+
+							<f:facet name="header">
+								<h:outputText value="#{msg.label_you_response}" />
+							</f:facet>
+
+
+							<p:column
+								styleClass="#{questionStudentResponse.isCorrect ? 'columnCorrect' : 'columnIncorrect' }">
+								<h:outputText
+									value="#{questionStudentResponse.descriptionResponse}" />
+							</p:column>
+
+							<f:facet name="footer">
+								<h:outputText
+									value="#{msg.label_note} - #{resultStudentVO.noteQuestion}" />
+							</f:facet>
+						</p:dataTable>
+
+
+					</p:column>
+
+				</p:dataTable>
+
+
+				<f:facet name="footer">
+					<h:outputText
+						value="#{msg.label_note_total} - #{studentExamController.totalNoteExam}" />
+					<br />
+
+					<div class="warning_correct">#{msg.label_correct}</div>
+					<br />
+					<div class="warning_in_correct">#{msg.label_incorrects}</div>
+				</f:facet>
+
+			</p:panel>
+
+	
+				
+				<p:barChart id="basic" value="#{studentExamController.categoryModel}" legendPosition="ne"  
+            title="#{msg.label_note_total}" min="0" max="200" style="height:300px"/>  
+
+		</h:form>
+
+
+
+	</ui:define>
+</ui:composition>

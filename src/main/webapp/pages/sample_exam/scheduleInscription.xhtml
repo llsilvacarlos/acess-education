@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template/template.xhtml">
+	<ui:define name="content">
+		<h:form>
+
+				
+			<p:growl id="messages" showDetail="true" />
+
+			<p:schedule id="schedule"
+				value="#{scheduleSampleExamController.eventModel}"
+				widgetVar="myscheduleSampleExam" timeZone="America/Sao_Paulo" locale="pt" resizable="false" draggable="false">
+
+				<p:ajax event="eventSelect"
+					listener="#{scheduleSampleExamInscriptionController.onEventSelect}"
+					update="eventDetails" oncomplete="PF('eventDialog').show()" />
+				<p:ajax event="eventMove"
+					listener="#{scheduleSampleExamInscriptionController.onEventMove}"
+					update="messages" />
+				<p:ajax event="eventResize"
+					listener="#{scheduleSampleExamInscriptionController.onEventResize}"
+					update="messages" />
+
+
+			</p:schedule>
+
+			<p:dialog widgetVar="eventDialog" header="#{msg.label_sample_exam_inscription}"
+				showEffect="clip" hideEffect="clip" resizable="false">
+				<h:panelGrid id="eventDetails" columns="2">
+
+					<h:outputLabel value="#{msg.label_number_inscription}" />
+					
+					<h:outputText value="#{scheduleSampleExamInscriptionController.quantityInscription}" />
+					
+					<h:outputLabel for="sample_exam"
+						value="#{msg.label_sample_exam}" />
+					<h:outputText value="#{scheduleSampleExamInscriptionController.sampleExam.description}"  id="sample_exam"/>
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.label_incription}" update="messages"
+							id="contacts" action="#{scheduleSampleExamInscriptionController.createInscription}"
+							styleClass="ui-priority-primary" oncomplete="PF('eventDialog').hide()" />
+					</f:facet>
+				</h:panelGrid>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

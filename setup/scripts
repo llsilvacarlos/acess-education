@@ -1,0 +1,10 @@
+#Type User
+
+insert into type_user values (1, 'Administrador');
+insert into type_user values (2, 'Professor');
+insert into type_user values (3, 'Aluno');
+
+#sample_type Question
+
+insert into sample_status values (1, 'Agendado');
+insert into sample_status values (2, 'Cancelado');

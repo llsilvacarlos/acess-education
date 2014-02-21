@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:panel>
+		<p:panelGrid columns="2">
+			<h:outputLabel for="description_question"
+				value="Descricao da pergunta #{msg.label_mandatory}" />
+			<p:inputText id="description_question"
+				value="#{sampleExamController.sampleExamQuestionController.question.description}"
+				label="#{msg.label_description}" size="50" required="true" />
+
+
+			<h:outputLabel for="discipline"
+				value="#{msg.label_discipline} #{msg.label_mandatory}" />
+
+			<h:selectOneMenu id="discipline"
+				value="#{sampleExamController.sampleExamQuestionController.question.discipline}"
+				label="#{msg.label_discipline}"
+				converter="disciplineSelectConverter">
+				<f:selectItems
+					value="#{sampleExamController.sampleExamQuestionController.disciplines}" />
+			</h:selectOneMenu>
+
+
+		</p:panelGrid>
+
+		<p:spacer height="10" />
+
+		<p:panel id="panelAddMultQuestion">
+			<p:panelGrid columns="2">
+				<h:outputLabel for="description_response"
+					value="#{msg.label_description_response}" />
+
+				<p:inputText id="description_response"
+					value="#{sampleExamController.sampleExamQuestionController.questionResponse.descriptionResponse}"
+					label="#{msg.label_description}" />
+
+
+				<f:facet name="footer">
+					<p:commandButton value="#{msg.label_add_response}"
+						update="ListResponse" id="contacts"
+						action="#{sampleExamController.sampleExamQuestionController.addQuestionResponse}"
+						styleClass="ui-priority-primary" />
+				</f:facet>
+			</p:panelGrid>
+
+			<p:spacer height="10" />
+			<p:dataTable var="questionResponse"
+				value="#{sampleExamController.sampleExamQuestionController.questionResponses}"
+				id="ListResponse"
+				selection="#{sampleExamController.sampleExamQuestionController.questionResponsesCorrect}"
+				selectionMode="multiple"
+				rowKey="#{questionResponse.descriptionResponse}">
+				<p:column headerText="#{msg.label_response}">
+					<h:outputText value="#{questionResponse.descriptionResponse}" />
+				</p:column>
+
+
+				<p:column headerText="">
+					<p:commandButton id="selectRemove" update="@form"
+						icon="ui-icon-close"
+						action="#{sampleExamController.sampleExamQuestionController.delete}"
+						immediate="true">
+						<f:setPropertyActionListener value="#{questionResponse}"
+							target="#{sampleExamController.sampleExamQuestionController.questionResponse}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+
+		</p:panel>
+		
+		
+		<br />
+		<p:commandButton action="#{sampleExamController.addQuestion}"
+			value="#{msg.label_add_question}" update="@form" />
+			
+		<p:commandButton id="modalDialogButton"
+			value="#{msg.label_sample_preview}" onclick="PF('dlg2').show();"
+			immediate="true" />
+
+		<p:commandButton value="#{msg.label_finish}" update="@form"
+			id="btnSalvar" action="#{sampleExamController.save}"
+			styleClass="ui-priority-primary" immediate="true">
+		</p:commandButton>
+
+	</p:panel>
+</ui:composition>

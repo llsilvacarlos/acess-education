@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/template.xhtml">
+	<ui:define name="content">
+		<p:panel
+			rendered="${userAuthentication != null and userAuthentication.typeUser.id == 1}">
+
+			<h:form>
+				<p:growl id="messages" showDetail="true" />
+
+				<p:schedule id="schedule"
+					value="#{scheduleSampleExamController.eventModel}"
+					widgetVar="myscheduleSampleExam" timeZone="America/Sao_Paulo"
+					locale="pt" resizable="false" draggable="false">
+
+					<p:ajax event="eventSelect"
+						listener="#{scheduleSampleExamController.onEventSelect}"
+						update="eventDetails" oncomplete="PF('eventDialog').show()" />
+					<p:ajax event="eventMove"
+						listener="#{scheduleSampleExamController.onEventMove}"
+						update="messages" />
+					<p:ajax event="eventResize"
+						listener="#{scheduleSampleExamController.onEventResize}"
+						update="messages" />
+
+
+				</p:schedule>
+
+				<p:dialog widgetVar="eventDialog" header="#{msg.label_sample_exam}"
+					showEffect="clip" hideEffect="clip">
+					<h:panelGrid id="eventDetails" columns="2">
+
+						<h:outputLabel for="dateExecute"
+							value="#{msg.label_data_new_sample_exame}" />
+
+
+						<p:calendar
+							value="#{scheduleSampleExamController.sampleExam.dataStart}"
+							id="dateExecute" showOn="button" converter="calendarConverter"
+							required="true" pattern="dd/MM/yyyy hh:mm"
+							label="#{msg.label_data_new_sample_exame}"
+							timeZone="America/Sao_Paulo" locale="pt" />
+
+						<h:outputLabel for="dateend"
+							value="#{msg.label_data_end_sample_exam}" />
+
+						<p:calendar
+							value="#{scheduleSampleExamController.sampleExam.dataEnd}"
+							id="dateend" showOn="button" converter="calendarConverter"
+							required="true" pattern="dd/MM/yyyy hh:mm"
+							label="#{msg.label_data_end_sample_exam}"
+							timeZone="America/Sao_Paulo" locale="pt" />
+
+
+
+						<h:outputLabel for="sampleStatus"
+							value="#{msg.label_status_sample}" />
+
+						<h:selectOneMenu id="sampleStatus"
+							value="#{scheduleSampleExamController.sampleStatus}"
+							label="#{msg.label_status_sample}"
+							converter="sampleStatusConverter">
+							<f:selectItems
+								value="#{scheduleSampleExamController.listSampleStatus}" />
+						</h:selectOneMenu>
+
+						<f:facet name="footer">
+							<p:commandButton value="#{msg.label_salvar}" update="messages"
+								id="contacts" action="#{scheduleSampleExamController.save}"
+								styleClass="ui-priority-primary"
+								oncomplete="PF('eventDialog').hide()" />
+						</f:facet>
+					</h:panelGrid>
+
+				</p:dialog>
+			</h:form>
+		</p:panel>
+		<p:panel
+			rendered="${userAuthentication == null and userAuthentication.typeUser.id != 1}">
+			<ui:include src="/pages/template/unauthorized _acess.xhtml" />
+
+		</p:panel>
+	</ui:define>
+</ui:composition>

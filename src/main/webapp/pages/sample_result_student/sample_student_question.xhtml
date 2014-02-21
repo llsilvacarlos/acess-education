@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template/template.xhtml">
+	<ui:define name="content">
+		<h:form>
+
+			<h:outputLabel value="#{studentExamController.sampleExam.description}" />
+			
+			<p:dataTable value="#{studentExamController.sampleExam.questions}"
+				var="question" id="tableQuestion">
+
+				<p:column headerText="#{msg.label_description_response}">
+					<h:outputText value="#{question.description}" />
+				</p:column>
+
+				<p:column>
+					<p:dataTable var="questionResponse"
+						value="#{question.questionResponses}" id="ListResponse"
+						selection="#{studentExamController.questionResponsesStudent}"
+						selectionMode="multiple" rowKey="#{questionResponse.id}">
+
+						<p:column headerText="#{msg.label_response}">
+							<h:outputText value="#{questionResponse.descriptionResponse}" />
+						</p:column>
+						<p:ajax event="rowSelect" listener="#{studentExamController.rowSelected}" />
+						<p:ajax event="rowUnselect" listener="#{studentExamController.rowUnselected}" />
+						
+					</p:dataTable>
+				</p:column>
+			</p:dataTable>
+
+			<p:commandButton value="#{msg.label_finish}"
+				action="#{studentExamController.finishSampleExamStudent}" ><p:confirm header="Confirmation"
+							message="#{msg.label_confirm_finish_sample_exam_student}" icon="ui-icon-alert" /></p:commandButton>
+		</h:form>
+
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+			<p:commandButton value="Yes" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+
+	</ui:define>
+</ui:composition>

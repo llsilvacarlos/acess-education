@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/template.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:panel>
+				<f:facet name="header">
+					<h:outputLabel value="#{msg.label_report_student_exam}" />
+				</f:facet>
+
+			</p:panel>
+			<p:dataTable var="sampleExam"
+				value="#{studentReportController.sampleExams}">
+				<p:column sortBy="description" headerText="#{msg.label_description}">
+					<h:outputText value="#{sampleExam.description}" />
+				</p:column>
+
+				<p:column sortBy="description"
+					headerText="#{msg.label_data_new_sample_exame} - #{msg.label_data_end_sample_exam}">
+
+					<h:outputText value="#{sampleExam.dataStart.time}">
+						<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss" />
+					</h:outputText> - 
+					
+					<h:outputText value="#{sampleExam.dataEnd.time}">
+						<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss" />
+					</h:outputText>
+
+				</p:column>
+
+
+
+				<p:column headerText="">
+
+					<p:commandLink
+						action="#{studentReportController.resultSampleStudent}"
+						immediate="true" update="@form">
+						<p:graphicImage value="/img/insc_icon.png" width="25" height="25" />
+						<f:setPropertyActionListener value="#{sampleExam}"
+							target="#{studentReportController.sampleExam}" />
+					</p:commandLink>
+
+				</p:column>
+
+			</p:dataTable>
+
+
+			<br />
+
+
+			<p:dataTable id="dataTable" var="user"
+				value="#{studentReportController.listUsers}"
+				rendered="#{studentReportController.listUsers.size() > 0}">
+
+
+
+				<f:facet name="header">
+					<h:outputText value="#{msg.msg_title_list_all_user}" />
+				</f:facet>
+
+
+				<p:column sortBy="name" headerText="#{msg.label_nome}">
+					<h:outputText value="#{user.name}" />
+				</p:column>
+
+				<p:column sortBy="login" headerText="#{msg.label_login}">
+					<h:outputText value="#{user.login}" />
+				</p:column>
+
+				<p:column sortBy="dateBirth"
+					headerText="#{msg.label_data_nascimento}">
+					<h:outputText value="#{user.dateBirth.time}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<p:commandButton id="selectEdit" icon="ui-icon-arrowrefresh-1-w"
+						action="#{studentReportController.viewReport}" immediate="true">
+						<f:setPropertyActionListener value="#{user}"
+							target="#{studentReportController.user}" />
+					</p:commandButton>
+
+				</p:column>
+
+
+
+
+			</p:dataTable>
+
+
+
+		</h:form>
+
+
+
+	</ui:define>
+</ui:composition>

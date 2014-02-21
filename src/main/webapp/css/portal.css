@@ -1,0 +1,19 @@
+.columnCorrect {
+	background-color: #A9F5D0;
+}
+
+.columnIncorrect {
+	background-color: #FF8000;
+}
+
+.warning_correct {
+	background-color: #A9F5D0;
+	width: 100px;
+	height: 30px;
+}
+
+.warning_in_correct {
+	background-color: #FF8000;
+	width: 100px;
+	height: 30px;
+}

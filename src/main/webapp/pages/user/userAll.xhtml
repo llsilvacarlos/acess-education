@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/template.xhtml">
+	<ui:define name="content">
+
+		<p:panel
+			rendered="${userAuthentication != null and userAuthentication.typeUser.id == 1}">
+			<h:form id="form">
+
+
+
+				<h:panelGrid columns="2">
+					<h:outputLabel value="#{msg.label_login}" />
+					<h:inputText value="#{userController.nameSearch}" />
+					<p:commandButton value="#{msg.label_search}"
+						action="#{userController.search}" update="@form" />
+				</h:panelGrid>
+
+				<p:growl id="growl" showDetail="true" />
+
+				<p:dataTable id="dataTable" var="user"
+					value="#{userController.listUser}">
+
+					<p:ajax event="rowToggle" update=":form:growl" />
+
+					<f:facet name="header">
+						<h:outputText value="#{msg.msg_title_list_all_user}" />
+					</f:facet>
+
+					<p:column style="width:2%">
+						<p:rowToggler />
+					</p:column>
+
+					<p:column sortBy="name" headerText="#{msg.label_nome}">
+						<h:outputText value="#{user.name}" />
+					</p:column>
+
+					<p:column sortBy="login" headerText="#{msg.label_login}">
+						<h:outputText value="#{user.login}" />
+					</p:column>
+
+					<p:column sortBy="dateBirth"
+						headerText="#{msg.label_data_nascimento}">
+						<h:outputText value="#{user.dateBirth.time}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</p:column>
+
+					<p:column>
+						<p:commandButton id="selectEdit" icon="ui-icon-arrowrefresh-1-w"
+							action="#{userController.edit}" immediate="true">
+							<f:setPropertyActionListener value="#{user}"
+								target="#{userController.user}" />
+						</p:commandButton>
+
+					</p:column>
+
+
+					<p:rowExpansion>
+
+						<h:panelGrid id="display" columns="2" cellpadding="4"
+							style="width:300px;" styleClass=" ui-widget-content grid">
+
+
+							<h:outputText for="address" value="#{msg.label_endereco} " />
+							<h:outputText id="address" value="#{user.address.streetAddress}" />
+
+
+							<h:outputText for="cep" value="#{msg.label_cep}" />
+							<h:outputText id="cep" value="#{user.address.zip}" />
+
+							<h:outputText for="bairro" value="#{msg.label_bairro}" />
+							<h:outputText id="bairro" value="#{user.address.neighborhood}" />
+
+
+							<h:outputText for="numero" value="#{msg.label_numero}" />
+							<h:outputText id="numero" value="#{user.address.number}" />
+
+							<h:outputText for="complement" value="#{msg.label_complement}" />
+							<h:outputText id="complement" value="#{user.address.complement}" />
+
+
+						</h:panelGrid>
+					</p:rowExpansion>
+
+
+				</p:dataTable>
+
+
+
+			</h:form>
+
+		</p:panel>
+
+		<p:panel
+			rendered="${userAuthentication == null and userAuthentication.typeUser.id != 1}">
+			<ui:include src="/pages/template/unauthorized _acess.xhtml" />
+
+		</p:panel>
+
+
+	</ui:define>
+</ui:composition>

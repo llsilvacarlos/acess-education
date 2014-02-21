@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/template.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:panel>
+				<f:facet name="header">
+					<h:outputLabel value="#{msg.label_list_all_tutoring}" />
+				</f:facet>
+
+			</p:panel>
+			<p:dataTable var="tutoring"
+				value="#{tutoringController.listTutoring}">
+				<p:column sortBy="description" headerText="#{msg.label_discipline}">
+					<h:outputText value="#{tutoring.discipline.description}" />
+				</p:column>
+
+				<p:column sortBy="description"
+					headerText="#{msg.label_data_new_sample_exame} - #{msg.label_data_end_sample_exam}">
+
+					<h:outputText value="#{tutoring.dataStart.time}">
+						<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss" />
+					</h:outputText> - 
+					
+					<h:outputText value="#{tutoring.dataEnd.time}">
+						<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss" />
+					</h:outputText>
+				</p:column>
+
+
+				<p:column headerText="">
+					<p:commandButton id="selectEdit" icon="ui-icon-arrowrefresh-1-w"
+						immediate="true" action="#{tutoringController.edit}">
+						<f:setPropertyActionListener value="#{tutoring}"
+							target="#{tutoringController.tutoring}" />
+					</p:commandButton>
+				</p:column>
+
+
+				<p:column headerText="">
+					<p:commandButton id="selectRemove" update="@form"
+						icon="ui-icon-close" action="#{tutoringController.delete}"
+						immediate="true">
+						<f:setPropertyActionListener value="#{discipline}"
+							target="#{disciplineController.discipline}" />
+						<p:confirm header="#{msg.label_confirmation}"
+							message="#{msg.label_confirm_msg}" icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:confirmDialog global="true">
+				<p:commandButton value="#{msg.label_yes}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="#{msg.label_no}" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
+		</h:form>
+
+
+
+	</ui:define>
+</ui:composition>

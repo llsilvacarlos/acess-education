@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>#{msg.label_title_application}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/primefaces-locale.js"></script>
+
+	<link type="text/css" rel="stylesheet"
+		href="#{request.contextPath}/css/portal.css" />
+
+</h:head>
+<h:body>
+
+	<p:panel>
+		<p:messages id="messages" showDetail="false" autoUpdate="true"
+			globalOnly="false" closable="true" />
+
+
+		<h:form enctype="multipart/form-data">
+
+
+			<p:panel id="formUserPrincipal">
+				<f:facet name="header">
+					#{msg.label_cadastro_usuario}
+					</f:facet>
+
+				<p:panel>
+					<p:graphicImage value="#{userPhotoController.content}" width="200"
+						height="200" id="photoImg" cache="false" />
+
+				</p:panel>
+
+				<p:spacer height="5 px" />
+
+				<p:panelGrid columns="2" id="panelUser">
+
+					<p:outputLabel for="photo" value="#{msg.label_photo}" />
+
+					<p:fileUpload id="photo"
+						fileUploadListener="#{userController.handleFileUpload}"
+						mode="advanced" sizeLimit="100000"
+						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="photoImg"
+						auto="true" />
+
+					<h:outputLabel for="nome"
+						value="#{msg.label_nome} #{msg.label_mandatory}" />
+					<p:inputText id="nome" value="#{userController.user.name}"
+						required="true" label="#{msg.label_nome}" size="40" />
+
+
+					<h:outputLabel for="dataNascimento"
+						value="#{msg.label_data_nascimento} #{msg.label_mandatory}" />
+
+					<p:calendar value="#{userController.user.dateBirth}"
+						id="dataNascimento" showOn="button" converter="calendarConverter"
+						required="true" pattern="dd/MM/yyyy"
+						label="#{msg.label_data_nascimento}" locale="pt" />
+
+					<h:outputLabel for="cep"
+						value="#{msg.label_cep} #{msg.label_mandatory}" />
+					<p:inputText id="cep" value="#{userController.user.address.zip}"
+						required="true" label="#{msg.label_cep}" size="40" />
+
+
+					<h:outputLabel for="address"
+						value="#{msg.label_endereco} #{msg.label_mandatory}" />
+					<p:inputText id="address"
+						value="#{userController.user.address.streetAddress}"
+						required="true" label="#{msg.label_endereco}" size="40" />
+
+
+					<h:outputLabel for="bairro"
+						value="#{msg.label_bairro} #{msg.label_mandatory}" />
+					<p:inputText id="bairro"
+						value="#{userController.user.address.neighborhood}"
+						required="true" label="#{msg.label_bairro}" size="40" />
+
+					<h:outputLabel for="numero"
+						value="#{msg.label_numero} #{msg.label_mandatory}" />
+					<p:inputText id="numero"
+						value="#{userController.user.address.number}" required="true"
+						label="#{msg.label_numero}" size="10" />
+
+
+					<h:outputLabel for="complement" value="#{msg.label_complement} " />
+					<p:inputText id="complement"
+						value="#{userController.user.address.complement}"
+						label="#{msg.label_complement}" size="10" />
+
+
+
+
+					<h:outputLabel for="login"
+						value="#{msg.label_login} #{msg.label_mandatory}" />
+					<h:inputText id="login" value="#{userController.user.login}"
+						required="true" label="#{msg.label_login}" size="20" />
+
+
+					<h:outputLabel for="password"
+						value="#{msg.label_password} #{msg.label_mandatory}" />
+					<h:inputSecret id="password"
+						value="#{userController.user.password}" required="true"
+						label="#{msg.label_password}" size="20" />
+
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.label_salvar}" update="@all"
+							id="btnSalvar" actionListener="#{userController.register}"
+							styleClass="ui-priority-primary" icon="ui-icon-disk" />
+					</f:facet>
+
+				</p:panelGrid>
+			</p:panel>
+
+		</h:form>
+
+
+	</p:panel>
+
+</h:body>
+</html>

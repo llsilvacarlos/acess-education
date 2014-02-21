@@ -1,0 +1,128 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h:form enctype="multipart/form-data">
+
+		<p:panel id="formUserPrincipal">
+
+			<p:panel>
+				<p:graphicImage value="#{userPhotoController.content}" width="200"
+					height="200" id="photoImg" cache="false" />
+
+			</p:panel>
+
+			<p:spacer height="5 px" />
+
+			<p:panelGrid columns="2" id="panelUser">
+
+				<p:outputLabel for="photo" value="#{msg.label_photo}" />
+
+				<p:fileUpload id="photo"
+					fileUploadListener="#{userController.handleFileUpload}"
+					mode="advanced" sizeLimit="100000"
+					allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="photoImg"
+					auto="true" />
+
+				<h:outputLabel for="nome"
+					value="#{msg.label_nome} #{msg.label_mandatory}" />
+				<p:inputText id="nome" value="#{userController.user.name}"
+					required="true" label="#{msg.label_nome}" size="40" />
+
+
+				<h:outputLabel for="dataNascimento"
+					value="#{msg.label_data_nascimento} #{msg.label_mandatory}" />
+
+				<p:calendar value="#{userController.user.dateBirth}"
+					id="dataNascimento" showOn="button" converter="calendarConverter"
+					required="true" pattern="dd/MM/yyyy"
+					label="#{msg.label_data_nascimento}" locale="pt" />
+
+				<h:outputLabel for="cep"
+					value="#{msg.label_cep} #{msg.label_mandatory}" />
+				<p:inputText id="cep" value="#{userController.user.address.zip}"
+					required="true" label="#{msg.label_cep}" size="40" />
+
+
+				<h:outputLabel for="address"
+					value="#{msg.label_endereco} #{msg.label_mandatory}" />
+				<p:inputText id="address"
+					value="#{userController.user.address.streetAddress}"
+					required="true" label="#{msg.label_endereco}" size="40" />
+
+
+				<h:outputLabel for="bairro"
+					value="#{msg.label_bairro} #{msg.label_mandatory}" />
+				<p:inputText id="bairro"
+					value="#{userController.user.address.neighborhood}" required="true"
+					label="#{msg.label_bairro}" size="40" />
+
+				<h:outputLabel for="numero"
+					value="#{msg.label_numero} #{msg.label_mandatory}" />
+				<p:inputText id="numero"
+					value="#{userController.user.address.number}" required="true"
+					label="#{msg.label_numero}" size="10" />
+
+
+				<h:outputLabel for="complement" value="#{msg.label_complement} " />
+				<p:inputText id="complement"
+					value="#{userController.user.address.complement}"
+					label="#{msg.label_complement}" size="10" />
+
+
+				<h:outputLabel for="typeUser"
+					value="#{msg.label_type_user} #{msg.label_mandatory}" rendered="${userAuthentication != null and userAuthentication.typeUser.id == 1}"/>
+
+
+				<h:selectOneMenu id="typeUser"
+					value="#{userController.user.typeUser}"
+					label="#{msg.label_type_user}" converter="typeUserConverter" rendered="${userAuthentication != null and userAuthentication.typeUser.id == 1}">
+					<f:selectItems value="#{userController.typeUsers}" />
+					<f:ajax event="change" render="@all"
+						listener="#{userController.handleTypeUserChange}" />
+				</h:selectOneMenu>
+
+
+				<h:outputLabel for="login"
+					value="#{msg.label_login} #{msg.label_mandatory}" />
+				<h:inputText id="login" value="#{userController.user.login}"
+					required="true" label="#{msg.label_login}" size="20" />
+
+
+				<h:outputLabel for="password"
+					value="#{msg.label_password} #{msg.label_mandatory}" />
+				<h:inputSecret id="password" value="#{userController.user.password}"
+					required="true" label="#{msg.label_password}" size="20" />
+
+
+				<f:facet name="footer">
+					<p:commandButton value="#{msg.label_salvar}" update="@all"
+						id="btnSalvar" actionListener="#{userController.save}"
+						styleClass="ui-priority-primary" icon="ui-icon-disk" />
+
+					<p:commandButton value="#{msg.label_remove}"
+						update="formUserPrincipal" id="btnRemover"
+						action="#{userController.delete}"
+						styWleClass="ui-priority-primary" rendered="${userAuthentication != null and userAuthentication.typeUser.id == 1}">
+						<p:confirm header="Confirmation"
+							message="#{msg.label_confirm_msg}" icon="ui-icon-alert" />
+					</p:commandButton>
+
+				</f:facet>
+
+			</p:panelGrid>
+		</p:panel>
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+			<p:commandButton value="Yes" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+
+	</h:form>
+</ui:composition>

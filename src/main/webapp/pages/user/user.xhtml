@@ -1,0 +1,37 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/template.xhtml">
+	<ui:define name="content">
+
+		<p:panel rendered="${userAuthentication != null}">
+			<p:messages id="messages" showDetail="false" autoUpdate="true"
+				globalOnly="false" closable="true" />
+
+			<p:tabView id="tabView">
+				<p:tab id="tab1" title="#{msg.label_cadastro_usuario}">
+					<ui:include src="_abaPersonal.xhtml" />
+				</p:tab>
+				<p:tab id="tab2" title="#{msg.label_contact}"
+					disabled="#{userController.user.id == null}">
+					<ui:include src="_abaContact.xhtml" />
+				</p:tab>
+
+				<p:tab title="#{msg.msg_teacher_discipline}"
+					rendered="#{userController.user.id !=null  and userController.user.typeUser.id == 2}"
+					id="tab3">
+					<ui:include src="_abaDisciplines.xhtml" />
+				</p:tab>
+			</p:tabView>
+		</p:panel>
+		
+		<p:panel rendered="${userAuthentication == null and userAuthentication.typeUser.id != 1}">
+			<ui:include src="/pages/template/unauthorized _acess.xhtml" />
+		
+		</p:panel>
+
+	</ui:define>
+</ui:composition>

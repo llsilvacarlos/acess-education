@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/template.xhtml">
+	<ui:define name="content">
+
+		<p:panel
+			rendered="${userAuthentication != null and userAuthentication.typeUser.id == 1}">
+			<h:form>
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
+
+
+				<p:wizard flowListener="#{sampleExamController.onFlowProcess}"
+					nextLabel="#{msg.label_next}" backLabel="#{msg.label_back}">
+
+					<p:tab id="sample" title="#{msg.label_sample_exam}">
+						<ui:include src="_abaSample_exam.xhtml" />
+					</p:tab>
+
+					<p:tab id="question" title="#{msg.label_questions}">
+						<ui:include src="_abaQuestion_Exam.xhtml" />
+					</p:tab>
+				</p:wizard>
+
+
+				<p:dialog id="modalDialog" header="#{msg.label_sample_preview}"
+					widgetVar="dlg2" modal="false" height="400" width="600"
+					showEffect="explode">
+					<p:dataTable value="#{sampleExamController.listQuestions}"
+						var="question" id="tableQuestion">
+
+						<p:column headerText="#{msg.label_discipline}">
+							<h:outputText value="#{question.discipline.description}" />
+						</p:column>
+
+						<p:column headerText="#{msg.label_description_response}">
+							<h:outputText value="#{question.description}" />
+						</p:column>
+
+						<p:column>
+							<p:dataList value="#{question.questionResponses}"
+								var="questionResponse" itemType="definition">
+										"#{questionResponse.descriptionResponse} ,<h:graphicImage
+									value="/img/icon_correct.png"
+									rendered="#{questionResponse.isCorrect}" width="20px"
+									height="20px" />
+								<h:graphicImage value="/img/icon_incorrect.png"
+									rendered="#{questionResponse.isCorrect == false}" width="20px"
+									height="20px" />
+							</p:dataList>
+
+						</p:column>
+
+						<p:column headerText="">
+							<p:commandButton id="selectRemoveQuestion" update="tableQuestion"
+								icon="ui-icon-close"
+								action="#{sampleExamController.removeQuestion}" immediate="true">
+								<f:setPropertyActionListener value="#{question}"
+									target="#{sampleExamController.sampleExamQuestionController.question}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:dialog>
+			</h:form>
+		</p:panel>
+
+		<p:panel
+			rendered="${userAuthentication == null and userAuthentication.typeUser.id != 1}">
+			<ui:include src="/pages/template/unauthorized _acess.xhtml" />
+
+		</p:panel>
+
+	</ui:define>
+</ui:composition>

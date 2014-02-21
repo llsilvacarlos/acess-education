@@ -1,0 +1,61 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<p:panel id="panelContacts">
+			<p:panelGrid columns="2">
+				<h:outputLabel for="email"
+					value="#{msg.label_email} #{msg.label_mandatory}" />
+				<p:inputText id="email"
+					value="#{userController.userContactController.contact.email}"
+					validatorMessage="#{msg.label_email_invalid}" required="true"
+					label="#{msg.label_email}" size="40">
+					<f:validateRegex
+						pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
+
+				<h:outputLabel for="fone"
+					value="#{msg.label_fone} #{msg.label_mandatory}" />
+				<p:inputText id="fone"
+					value="#{userController.userContactController.contact.fone}"
+					required="true" label="#{msg.label_fone}" />
+
+
+				<f:facet name="footer">
+					<p:commandButton value="#{msg.label_add}" update="ListContacts"
+						id="contacts"
+						action="#{userController.userContactController.addContact}"
+						styleClass="ui-priority-primary" />
+				</f:facet>
+			</p:panelGrid>
+			<p:dataTable var="contacts"
+				value="#{userController.userContactController.contacts}"
+				id="ListContacts">
+				<p:column headerText="#{msg.label_email}">
+					<h:outputText value="#{contacts.email}" />
+				</p:column>
+
+				<p:column headerText="#{msg.label_fone}">
+					<h:outputText value="#{contacts.fone}" />
+				</p:column>
+
+				<p:column>
+					<p:commandButton id="selectRemove" update="@form"
+						icon="ui-icon-close"
+						action="#{userContactController.removeContact}" immediate="true">
+						<f:setPropertyActionListener value="#{contacts}"
+							target="#{userContactController.contact}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+		</p:panel>
+			<p:commandButton value="#{msg.label_salvar}" update="@all"
+					id="btnSalvar" actionListener="#{userController.save}"
+					styleClass="ui-priority-primary" icon="ui-icon-disk" />
+	</h:form>
+</ui:composition>

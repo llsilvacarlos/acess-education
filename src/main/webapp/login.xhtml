@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>#{msg.label_title_application}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/primefaces-locale.js"></script>
+
+	<link type="text/css" rel="stylesheet"
+		href="#{request.contextPath}/css/login_page.css" />
+
+
+
+</h:head>
+<h:body>
+
+	<div class="container">
+		<section id="content"> <h:form>
+			<h1>#{msg.label_title_application}</h1>
+			<div>
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
+					globalOnly="false" closable="true" />
+					
+					<br />
+					
+				<h:inputText value="#{authenticationController.user.login}"
+					id="username" required="true" label="username" size="16"
+					p:placeholder="Username" />
+			</div>
+			<div>
+
+				<h:inputSecret value="#{authenticationController.user.password}"
+					id="password" required="true" label="password" size="16"
+					p:placeholder="write something" />
+			</div>
+			<div>
+
+				<h:commandButton id="loginButton" value="#{msg.label_go_in}"
+					ajax="false" action="#{authenticationController.authentication}" />
+
+				<a href="#">#{msg.label_lost_password}</a>
+				<p:commandLink action="register.xhtml"
+					value="#{msg.label_register_user}" />
+			</div>
+		</h:form><!-- form --> </section>
+		<!-- content -->
+	</div>
+	<!-- container -->
+
+</h:body>
+</html>

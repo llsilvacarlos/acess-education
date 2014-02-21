@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/template.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:panel>
+				<f:facet name="header">
+					<h:outputLabel value="#{msg.label_list_my_exams}" />
+				</f:facet>
+
+			</p:panel>
+			<p:dataTable var="sampleExam"
+				value="#{studentExamController.sampleExams}">
+				<p:column sortBy="description" headerText="#{msg.label_description}">
+					<h:outputText value="#{sampleExam.sampleExam.description}" />
+				</p:column>
+
+				<p:column sortBy="description"
+					headerText="#{msg.label_data_new_sample_exame} - #{msg.label_data_end_sample_exam}">
+
+					<h:outputText value="#{sampleExam.sampleExam.dataStart.time}">
+						<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss" />
+					</h:outputText> - 
+					
+					<h:outputText value="#{sampleExam.sampleExam.dataEnd.time}">
+						<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss" />
+					</h:outputText>
+
+				</p:column>
+
+
+
+				<p:column headerText="">
+					<p:commandButton id="selectRemove" update="@form"
+						icon="ui-icon-close" action="#{studentExamController.cancel}"
+						immediate="true">
+						<f:setPropertyActionListener value="#{sampleExam}"
+							target="#{studentExamController.sampleExam}" />
+						<p:confirm header="#{msg.label_confirmation}"
+							message="#{msg.label_confirm_cancel_schedule}"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
+
+
+				<p:column headerText="">
+
+					<p:commandLink
+						action="#{studentExamController.resultSampleStudent}"
+						immediate="true" rendered="#{sampleExam.examStudentEnum != 'FINISH'}">
+						<p:graphicImage value="/img/insc_icon.png"  width="25" height="25"/>
+						<f:setPropertyActionListener value="#{sampleExam}"
+							target="#{studentExamController.sampleExam}" />
+					</p:commandLink>
+					
+					<h:outputText value="#{msg.label_msg_finish_result}" rendered="#{sampleExam.examStudentEnum == 'FINISH'}" />
+
+				</p:column>
+
+			</p:dataTable>
+
+			<p:confirmDialog global="true">
+				<p:commandButton value="#{msg.label_yes}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="#{msg.label_no}" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
+		</h:form>
+
+
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:panel>
+
+		<p:panelGrid columns="2">
+			<h:outputLabel for="description"
+				value="#{msg.label_description} #{msg.label_mandatory}" />
+			<p:inputText id="description"
+				value="#{sampleExamController.sampleExam.description}"
+				label="#{msg.label_description}" size="50" required="true" />
+
+
+			<h:outputLabel for="dateExecute"
+				value="#{msg.label_data_new_sample_exame} #{msg.label_mandatory}" />
+
+
+			<p:calendar value="#{sampleExamController.sampleExam.dataStart}"
+				id="dateExecute" showOn="button" converter="calendarConverter"
+				required="true" pattern="dd/MM/yyyy hh:mm a"
+				label="#{msg.label_data_new_sample_exame}"
+				timeZone="America/Sao_Paulo" locale="pt" />
+
+			<h:outputLabel for="dateend"
+				value="#{msg.label_data_end_sample_exam} #{msg.label_mandatory}" />
+
+			<p:calendar value="#{sampleExamController.sampleExam.dataEnd}"
+				id="dateend" showOn="button" converter="calendarConverter"
+				required="true" pattern="dd/MM/yyyy hh:mm a"
+				label="#{msg.label_data_end_sample_exam}"
+				timeZone="America/Sao_Paulo" locale="pt" />
+
+			<h:outputLabel for="quantity"
+				value="#{msg.label_quantity_sample_exame} #{msg.label_mandatory}" />
+			<p:inputText id="quantity"
+				value="#{sampleExamController.sampleExam.quantityAvailable}"
+				label="#{msg.label_quantity_sample_exame}" size="20" required="true" />
+
+		</p:panelGrid>
+	</p:panel>
+</ui:composition>

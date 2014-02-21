@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="newUser::#pages#user#user.xhtml"
+    NAME="output" PATH="/pages/user/user.xhtml"
+    TARGET="rules:#pages#user#user.xhtml" TITLE="newUser" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::1" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listAllReportSchedule::#pages#student_report#student_report.xhtml"
+    NAME="output" PATH="/pages/student_report/student_report.xhtml"
+    TARGET="rules:#pages#student_report#student_report.xhtml"
+    TITLE="listAllReportSchedule" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::2" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="loginPage::#login.xhtml" NAME="output"
+    PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="loginPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::3" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listAllTutoringSchedule::#pages#tutoring#tutoringAll.xhtml"
+    NAME="output" PATH="/pages/tutoring/tutoringAll.xhtml"
+    TARGET="rules:#pages#tutoring#tutoringAll.xhtml"
+    TITLE="listAllTutoringSchedule" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::4" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="userAll::#pages#user#userAll.xhtml"
+    NAME="output" PATH="/pages/user/userAll.xhtml"
+    TARGET="rules:#pages#user#userAll.xhtml" TITLE="userAll" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::5" SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::5" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="newDiscipline::#pages#discipline#discipline.xhtml" NAME="output"
+    PATH="/pages/discipline/discipline.xhtml"
+    TARGET="rules:#pages#discipline#discipline.xhtml"
+    TITLE="newDiscipline" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::6" SHAPE="32,689,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::6" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="displineAll::#pages#discipline#disciplineAll.xhtml"
+    NAME="output" PATH="/pages/discipline/disciplineAll.xhtml"
+    TARGET="rules:#pages#discipline#disciplineAll.xhtml"
+    TITLE="displineAll" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::7" SHAPE="32,801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::7" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="newSampleExam::#pages#sample_exam#sample_exam.xhtml"
+    NAME="output" PATH="/pages/sample_exam/sample_exam.xhtml"
+    TARGET="rules:#pages#sample_exam#sample_exam.xhtml"
+    TITLE="newSampleExam" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#erroPage#erroPage.xhtml"
+  PATH="/erroPage/erroPage.xhtml" SHAPE="240,1041,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::8" SHAPE="32,1025,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::8" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listScheduleSample::#pages#sample_exam#scheduleExam.xhtml"
+    NAME="output" PATH="/pages/sample_exam/scheduleExam.xhtml"
+    TARGET="rules:#pages#sample_exam#scheduleExam.xhtml"
+    TITLE="listScheduleSample" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#user#userAll.xhtml"
+  PATH="/pages/user/userAll.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#discipline#disciplineAll.xhtml"
+  PATH="/pages/discipline/disciplineAll.xhtml" SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#discipline#discipline.xhtml"
+  PATH="/pages/discipline/discipline.xhtml" SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#sample_result_student#sample_studentAll.xhtml"
+  PATH="/pages/sample_result_student/sample_studentAll.xhtml"
+  SHAPE="240,817,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#sample_result_student#sample_studentAll.xhtml:0"
+   NAME="item"
+   PATH="/pages/sample_result_student/sample_studentAll.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="sampleResultStudent::#pages#sample_result_student#sample_student_question.xhtml"
+    NAME="output"
+    PATH="/pages/sample_result_student/sample_student_question.xhtml"
+    TARGET="rules:#pages#sample_result_student#sample_student_question.xhtml"
+    TITLE="sampleResultStudent" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#sample_result_student#sample_student_question.xhtml"
+  PATH="/pages/sample_result_student/sample_student_question.xhtml"
+  SHAPE="448,801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#sample_result_student#sample_student_question.xhtml:0"
+   NAME="item"
+   PATH="/pages/sample_result_student/sample_student_question.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="resultStudentPage::#pages#sample_result_student#sample_student_result.xhtml"
+    NAME="output"
+    PATH="/pages/sample_result_student/sample_student_result.xhtml"
+    TARGET="rules:#pages#sample_result_student#sample_student_result.xhtml"
+    TITLE="resultStudentPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#sample_exam#scheduleInscription.xhtml"
+  PATH="/pages/sample_exam/scheduleInscription.xhtml"
+  SHAPE="240,705,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#sample_exam#scheduleExam.xhtml"
+  PATH="/pages/sample_exam/scheduleExam.xhtml" SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#sample_exam#sample_exam.xhtml"
+  PATH="/pages/sample_exam/sample_exam.xhtml" SHAPE="240,481,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#sample_result_student#sample_student_result.xhtml"
+  PATH="/pages/sample_result_student/sample_student_result.xhtml"
+  SHAPE="656,817,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#user#user.xhtml"
+  PATH="/pages/user/user.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::9" SHAPE="32,1137,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::9" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listScheduleInscriptionSample::#pages#sample_exam#scheduleInscription.xhtml"
+    NAME="output" PATH="/pages/sample_exam/scheduleInscription.xhtml"
+    TARGET="rules:#pages#sample_exam#scheduleInscription.xhtml"
+    TITLE="listScheduleInscriptionSample" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="240,929,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::10" SHAPE="32,913,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::10" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listAllMySchedule::#pages#sample_result_student#sample_studentAll.xhtml"
+    NAME="output"
+    PATH="/pages/sample_result_student/sample_studentAll.xhtml"
+    TARGET="rules:#pages#sample_result_student#sample_studentAll.xhtml"
+    TITLE="listAllMySchedule" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#student_report#student_report.xhtml"
+  PATH="/pages/student_report/student_report.xhtml" SHAPE="240,1153,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#student_report#student_report.xhtml:0"
+   NAME="item" PATH="/pages/student_report/student_report.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="viewReportUser::#pages#student_report#report_student.xhtml"
+    NAME="output" PATH="/pages/student_report/report_student.xhtml"
+    TARGET="rules:#pages#student_report#report_student.xhtml"
+    TITLE="viewReportUser" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#student_report#report_student.xhtml"
+  PATH="/pages/student_report/report_student.xhtml" SHAPE="448,1137,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::11" SHAPE="32,1249,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::11" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="errorPage::#erroPage#erroPage.xhtml"
+    NAME="output" PATH="/erroPage/erroPage.xhtml"
+    TARGET="rules:#erroPage#erroPage.xhtml" TITLE="errorPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#tutoring#tutoringAll.xhtml"
+  PATH="/pages/tutoring/tutoringAll.xhtml" SHAPE="240,1265,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#tutoring#tutoringAll.xhtml:0"
+   NAME="item" PATH="/pages/tutoring/tutoringAll.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="tutoring::#pages#tutoring#tutoring.xhtml"
+    NAME="output" PATH="/pages/tutoring/tutoring.xhtml"
+    TARGET="rules:#pages#tutoring#tutoring.xhtml" TITLE="tutoring" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#tutoring#tutoring.xhtml"
+  PATH="/pages/tutoring/tutoring.xhtml" SHAPE="448,1249,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

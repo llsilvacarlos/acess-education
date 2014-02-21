@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee      http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+	<!-- Global -->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>newUser</from-outcome>
+			<to-view-id>/pages/user/user.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllReportSchedule</from-outcome>
+			<to-view-id>/pages/student_report/student_report.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>loginPage</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllTutoringSchedule</from-outcome>
+			<to-view-id>/pages/tutoring/tutoringAll.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>userAll</from-outcome>
+			<to-view-id>/pages/user/userAll.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>newDiscipline</from-outcome>
+			<to-view-id>/pages/discipline/discipline.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>displineAll</from-outcome>
+			<to-view-id>/pages/discipline/disciplineAll.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>newSampleExam</from-outcome>
+			<to-view-id>/pages/sample_exam/sample_exam.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listScheduleSample</from-outcome>
+			<to-view-id>/pages/sample_exam/scheduleExam.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listScheduleInscriptionSample</from-outcome>
+			<!-- to-view-id>/sample_result_student/sample_studentAll.xhtml</to-view-id -->
+			<to-view-id>/pages/sample_exam/scheduleInscription.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllMySchedule</from-outcome>
+			<to-view-id>/pages/sample_result_student/sample_studentAll.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>errorPage</from-outcome>
+			<to-view-id>/erroPage/erroPage.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+	<application>
+		<locale-config>
+			<default-locale>pt_BR</default-locale>
+			<supported-locale>en-US</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
+	<!-- End to Global -->
+
+
+	<navigation-rule>
+		<from-view-id>/pages/student_report/student_report.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>viewReportUser</from-outcome>
+			<to-view-id>/pages/student_report/report_student.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<from-view-id>/pages/sample_result_student/sample_studentAll.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>sampleResultStudent</from-outcome>
+			<to-view-id>/pages/sample_result_student/sample_student_question.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+	</navigation-rule>
+	
+	
+	
+	<navigation-rule>
+		<from-view-id>/pages/tutoring/tutoringAll.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>tutoring</from-outcome>
+			<to-view-id>/pages/tutoring/tutoring.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+	<navigation-rule>
+		<from-view-id>/pages/sample_result_student/sample_student_question.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>resultStudentPage</from-outcome>
+			<to-view-id>/pages/sample_result_student/sample_student_result.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+	</navigation-rule>
+
+
+
+	<lifecycle>
+		<phase-listener>br.com.portal.education.listener.FaseListener</phase-listener>
+	</lifecycle>
+
+</faces-config>
